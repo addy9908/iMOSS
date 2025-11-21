@@ -766,6 +766,8 @@ class VideoScoring:
         df_summary['cum(s)'] = round(df_summary["Immobility"].cumsum() /self.original_fps, 2)
         time_column = 'Time(s)'
         df_summary['TrialTime'] = df_summary[time_column] - df_summary[time_column].iloc[0]
+        time_step = df_summary['TrialTime'].diff().mean().item()
+        df_summary['AbsFrameTime'] = (df_summary['Frame'] -1) * time_step
         
         df_bined = self.bined_immobility(df_summary,10)
         df_bined_30 = self.bined_immobility(df_summary,30)
@@ -930,9 +932,11 @@ class VideoScoring:
             # Filter data based on Col3 values
             if 'systemTime' in df_raw.columns: # neurophotometrics time at sec
                 df = df_raw[['systemTime', 'Cam_Frame']].rename(columns={'systemTime': time_column, 'Cam_Frame': 'Frame'})
+                print('Merge with systemTimeStamp')
             else: # computer time at ms
                 df = df_raw[['Millis', 'Cam_Frame']].rename(columns={'Millis': time_column, 'Cam_Frame': 'Frame'})
                 df[time_column] = df[time_column]/1000
+                print('Merge with computerTimeStamp')
 
             
             df['Frame'] = df['Frame'] - df['Frame'].iloc[0] + 1 # in case the frame does not start from 1
