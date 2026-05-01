@@ -41,15 +41,18 @@ class FileSelectorWindow:
             # aligned_file_ext = '_aligned.' + file_ext
             
             def should_include_file(file_name):
-                check = True
+                file_name_lower = file_name.lower()
         
-                if include_strings and not all(include_str in file_name for include_str in include_strings):
-                    check = False
+                # If it misses ANY required string, fail immediately
+                if include_strings and not all(include_str.lower() in file_name_lower for include_str in include_strings):
+                    return False
                 
-                if exclude_strings and any(exclude_str in file_name for exclude_str in exclude_strings):
-                    check = False
+                # If it contains ANY excluded string, fail immediately
+                if exclude_strings and any(exclude_str.lower() in file_name_lower for exclude_str in exclude_strings):
+                    return False
                 
-                return check
+                # If it passes both checks, it's good to go!
+                return True
     
             if os.path.isdir(folder_path):
                 if include_subfolders_var.get():
