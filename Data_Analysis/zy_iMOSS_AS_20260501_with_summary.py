@@ -146,6 +146,7 @@ class detect_immobility:
                 
                 # --- SAFE EXIT SEQUENCE ---
                 root.quit()
+                root.update()
                 root.destroy()
                             
             except ValueError:

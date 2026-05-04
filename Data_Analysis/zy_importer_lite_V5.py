@@ -161,6 +161,7 @@ class FileSelectorWindow:
         
         # Safe Exit Sequence
         self.root.quit()
+        self.root.update()
         self.root.destroy()
 
     def on_quit(self):
@@ -170,6 +171,7 @@ class FileSelectorWindow:
         
         # Safe Exit Sequence
         self.root.quit()
+        self.root.update()
         self.root.destroy()
 
 if __name__ == "__main__":
