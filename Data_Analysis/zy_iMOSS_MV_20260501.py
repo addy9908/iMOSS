@@ -131,10 +131,11 @@ class VideoScoring:
         
         tk.Button(action_frame, text="Draw New ROI (r)", command=self.start_roi_drawing, bg="orange", fg="black", font=('Helvetica', 9, 'bold')).grid(row=0, column=0, sticky='ew', padx=(0, 5))
         tk.Button(action_frame, text="Resume Scoring", command=self.resume_scoring, bg="orange", fg="black", font=('Helvetica', 9, 'bold')).grid(row=0, column=1, sticky='ew', padx=(5, 0))
-        
+        tk.Button(action_frame, text="Save ROI as PNG (600dpi)", command=self.save_roi_as_png, bg="#008CBA", fg="white", font=('Helvetica', 9, 'bold')).grid(row=1, column=0, columnspan=2, sticky='ew', pady=(10, 0))
+          
         tk.Button(left_panel, text="Save Data", command=self.save_data, bg="purple", fg="white", font=('Helvetica', 10, 'bold')).grid(row=6, column=0, columnspan=2, pady=(15,5), sticky='ew')
         tk.Button(left_panel, text="Save & Next Mouse", command=self.save_and_next_mouse, bg="purple", fg="white", font=('Helvetica', 10, 'bold')).grid(row=7, column=0, columnspan=2, pady=5, sticky='ew')
-
+                
         # ==========================================
         # RIGHT PANEL (Video & Controls)
         # ==========================================
@@ -381,6 +382,8 @@ class VideoScoring:
             immobility = self.get_immobility_label(self.data[self.current_mouse_id], self.frame_number)
             color = (255, 0, 0) if immobility == self.event_names[1] else (0, 255, 0) 
             cv2.putText(display_frame, f"{self.current_mouse_id}: {immobility}", (10, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+        
+        self.roi_frame = display_frame.copy()
 
     def update_canvas_image(self, display_frame):
         win_w = self.canvas.winfo_width()
@@ -682,6 +685,30 @@ class VideoScoring:
             with open(filepath, "r+"): return False
         except IOError:
             return True
+
+    def save_roi_as_png(self):
+        """Saves the current ROI frame as a 600 DPI PNG file."""
+        self.restore_focus()
+        if self.roi_frame is None or self.video_path is None:
+            messagebox.showwarning("Warning", "No video loaded or ROI frame available to save.", parent=self.tk_window)
+            return
+
+        try:
+            # Convert the frame (which is a NumPy array) to a PIL Image
+            pil_img = Image.fromarray(self.roi_frame)
+
+            # Generate a unique filename
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            mouse_id = self.current_mouse_id if self.current_mouse_id else "FullFrame"
+            save_path = f"{self.video_path.rsplit('.', 1)[0]}_{mouse_id}_{self.frame_number}_{timestamp}.png"
+
+            # Save the image with 600 DPI metadata
+            pil_img.save(save_path, dpi=(600, 600))
+            
+            messagebox.showinfo("Success", f"Image saved successfully to:\n{os.path.basename(save_path)}", parent=self.tk_window)
+        except Exception as e:
+            messagebox.showerror("Save Error", f"Failed to save image: {e}", parent=self.tk_window)
+
 
     def save_data(self):
         self.restore_focus()
