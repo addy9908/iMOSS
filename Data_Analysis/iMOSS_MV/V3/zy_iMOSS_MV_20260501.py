@@ -207,6 +207,13 @@ class VideoScoring:
         self.tk_window.bind("<KeyPress-h>", self.toggle_help)
         
         self.tk_window.protocol("WM_DELETE_WINDOW", self.on_close)
+        
+        def unfocus_if_not_entry(event):
+            widget = event.widget
+            if not isinstance(widget, tk.Entry):
+                self.tk_window.focus_set()
+                
+        self.tk_window.bind("<Button-1>", unfocus_if_not_entry) # move cursor out of entries
 
     def restore_focus(self):
         """Fixes Bug 1: Prevents spacebar from reactivating buttons."""
