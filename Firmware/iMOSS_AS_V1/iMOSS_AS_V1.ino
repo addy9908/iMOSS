@@ -1,9 +1,10 @@
 //-------------------------------------------------------------------------------------
-// zy_tst_NIDA for tail suspension test with 4 load cells
+// iMOSS-AS for automatic tail suspension test with 4 load cells
 //Author: Zengyou Ye at NIDA/IRP
 //Date: 10/23/2024
 
 // Settling time (number of samples) and data filtering can be adjusted in the config.h file of HX711_ADC.h
+// HX711-ADC from: https://github.com/olkal/HX711_ADC
 //---------------------------------
 
 #include <HX711_ADC.h>
