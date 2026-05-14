@@ -47,8 +47,9 @@
 ## 🏗️ TST Chamber Design
 
 <p align="center">
-  <img src="Image/chamber_design.png" width="600" alt="Chamber Design">
-  <img src="Image/chamber_view.png" width="600" alt="Chamber View">
+	<img src="Image/chamber_design.png" width="300" alt="Chamber Design">
+	 <img src="Image/Chamber_view.png" width="300" alt="Front View">
+	 <img src="Image/Chamber_view_rear.png" width="300" alt="Rear View">
 </p>
 
 ---
@@ -66,7 +67,7 @@
 To achieve the **80 Hz sampling rate**, the load cell amplifier must be modified as shown below:
 
 <p align="center">
-  <img src="Image/80Hz.png" width="400" alt="Loadcell Amplifier Modification">
+  <img src="Image/80Hz.png" width="200" alt="Loadcell Amplifier Modification">
 </p>
 
 ---
@@ -250,8 +251,9 @@ void loop() {
   3. Install Spyder in this environment
   4. Download Main script as well as Required script in the same folder
   4. Run Main Script inside Spyder.
-
+---
 ### 🖥️ iMOSS-MV (Manual Scoring)
+<p align="center"> <img src="Image/iMOSS_MV_workflow.png" width="700" alt="iMOSS-MV Workflow"> </p>
 
 #### 📦 Requirements
 | Main Script | Conda Env | Link to Folder | Spyder Version |
@@ -260,9 +262,11 @@ void loop() {
 | zy_iMOSS_MV_withDuration.py | video_scorer.yaml | [iMOSS-MV V2](Data_analysis/iMOSS_MV/V2) | 6.05 |
 | zy_iMOSS_MV_20260501.py | iMOSS_MV_20260501.yml | [iMOSS-MV V3](Data_analysis/iMOSS_MV/V3) | 6.13 |
 
-<p align="center"> 
-	<img src="Image/iMOSS_MV_V1.png" width="350" alt="iMOSS MV V1">
-	<img src="Image/iMOSS_MV_V3.png" width="350" alt="iMOSS MV V3">
+<p align="center"> iMOSS MV V1
+	<img src="Image/iMOSS_MV_V1.png" width="400" alt="iMOSS MV V1">
+</p>
+<p align="center"> iMOSS MV V3
+	<img src="Image/iMOSS_MV_V3.png" width="400" alt="iMOSS MV V3">
 </p>
 
 ### Scoring with iMOSS-MV (zy_iMOSS_MV_20251119.py):
