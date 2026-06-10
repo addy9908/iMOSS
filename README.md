@@ -47,9 +47,9 @@
 ## 🏗️ TST Chamber Design
 
 <p align="center">
-	<img src="Image/chamber_design.png" width="300" alt="Chamber Design">
-	 <img src="Image/Chamber_view.png" width="300" alt="Front View">
-	 <img src="Image/Chamber_view_rear.png" width="300" alt="Rear View">
+	<img src="Image/chamber_design.png" height="250" alt="Chamber Design">
+	 <img src="Image/Chamber_view.png" height="250" alt="Front View">
+	 <img src="Image/Chamber_view_rear.png" height="250" alt="Rear View">
 </p>
 
 ---
